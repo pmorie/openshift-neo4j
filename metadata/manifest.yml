@@ -1,0 +1,49 @@
+---
+Name: neo4j
+Cartridge-Short-Name: NEO4J
+Display-Name: Neo4j 1.9 Community Cartridge
+Description: Neo4j 1.9'
+Version: '1.9'
+License: ASL 2.0
+Vendor: Neo4j
+Cartridge-Version: 0.0.1
+Cartridge-Vendor: pmorie
+Categories:
+- service
+- neo4j
+- database
+Provides:
+- neo4j-1.9
+- neo4j
+Cart-Data:
+- Key: username
+  Type: cart_data
+  Description: Root user on Neo4j database
+- Key: password
+  Type: cart_data
+  Description: Password for root user on Neo4j database
+- Key: database_name
+  Type: cart_data
+  Description: Neo4j DB name
+- Key: connection_url
+  Type: cart_data
+  Description: Neo4j connection URL
+Publishes:
+  publish-nosql-db-connection-info:
+    Type: ENV:NET_TCP:nosqldb:connection-info
+Scaling:
+  Min: 1
+  Max: 1
+Endpoints:
+- Private-IP-Name: DB_HOST
+  Private-Port-Name: DB_PORT
+  Private-Port: 27017
+  Public-Port-Name: DB_PROXY_PORT
+  Protocols:
+  - http
+- Private-IP-Name: DB_HOST
+  Private-Port-Name: DEBUG_PORT
+  Private-Port: 27018
+  Public-Port-Name: DEBUG_PROXY_PORT
+Additional-Control-Actions:
+- threaddump
